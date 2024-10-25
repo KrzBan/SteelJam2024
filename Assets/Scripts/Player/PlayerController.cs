@@ -30,4 +30,9 @@ public class PlayerController : MonoBehaviour
         
         player.Look(val);
     }
+
+    public void Interact(InputAction.CallbackContext context)
+    {
+       
+    }
 }

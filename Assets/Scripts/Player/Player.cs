@@ -11,6 +11,8 @@ public class Player : MonoBehaviour
     private Vector2 direction;
     private Rigidbody rb;
 
+
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -57,5 +59,26 @@ public class Player : MonoBehaviour
         right.Normalize();
 
         rb.linearVelocity = (forward * direction.y + right * direction.x) * movementSpeed;
+    }
+
+    public void Interact()
+    {
+
+        RaycastHit hit;
+        if (Physics.Raycast(headTransform.position, headTransform.TransformDirection(Vector3.forward), out hit, Mathf.Infinity))
+        {
+            Debug.Log("Did Hit");
+            IInteractable interactable;
+            bool isInteractable = hit.collider.TryGetComponent<IInteractable>(out interactable );
+
+            if(isInteractable)
+            {
+                interactable.interact(this);
+            }
+        }
+        else
+        {
+            Debug.Log("Did not Hit");
+        }
     }
 }
