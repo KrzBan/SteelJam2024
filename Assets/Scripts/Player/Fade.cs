@@ -34,7 +34,8 @@ public class Fade : MonoBehaviour
     IEnumerator IOut(float time)
     {
         RenderSettings.fog = true;
-        
+        RenderSettings.fogColor = Color.black;
+
         var timer = 0f;
         while (timer < time)
         {
@@ -45,6 +46,7 @@ public class Fade : MonoBehaviour
         RenderSettings.fogDensity = 10f;
         
         OnFadedOut?.Invoke();
+        OnFadedOut = null;
     }
     
     IEnumerator IIn(float time)
@@ -60,5 +62,6 @@ public class Fade : MonoBehaviour
         RenderSettings.fog = false;
         
         OnFadedIn?.Invoke();
+        OnFadedIn = null;
     }
 }
