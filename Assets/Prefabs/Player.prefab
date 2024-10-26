@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 4652120623364795468}
   - component: {fileID: 8089716275638371328}
   - component: {fileID: 5950769355089700897}
+  - component: {fileID: 141229955786914339}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -239,11 +240,55 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 9caa3d8a-6b2f-4e8e-8bad-6ede561bd9be
     m_ActionName: UI/TrackedDeviceOrientation
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 141229955786914339}
+        m_TargetAssemblyTypeName: UIController, Assembly-CSharp
+        m_MethodName: ShowEquipment
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 10c6e1e6-45c2-4f6e-87f6-2f3a983cfe09
+    m_ActionName: 'Player/Equipment[/Keyboard/tab]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 141229955786914339}
+        m_TargetAssemblyTypeName: UIController, Assembly-CSharp
+        m_MethodName: Hide
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 4dd236e6-7e5e-4f67-bcc5-2cdb36774762
+    m_ActionName: 'Player/Escape[/Keyboard/escape]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &141229955786914339
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1802225105672969590}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f84cb1caed992bf4daa9eaee5a2308fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &9034769716757518232
 GameObject:
   m_ObjectHideFlags: 0
@@ -334,7 +379,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TrackerSettings:
     BindingMode: 4
-    PositionDamping: {x: 0, y: 0, z: 0}
+    PositionDamping: {x: 0.01, y: 0.01, z: 0.01}
     AngularDampingMode: 0
     RotationDamping: {x: 1, y: 1, z: 1}
     QuaternionDamping: 1

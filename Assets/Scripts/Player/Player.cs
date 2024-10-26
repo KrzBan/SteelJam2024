@@ -1,18 +1,25 @@
 using System;
+using JetBrains.Annotations;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
 public class Player : MonoBehaviour
 {
+    [field: SerializeField] public PlayerStatus PlayerStatus { get; set; }
+    
     [SerializeField, Range(0f, 1f)] private float sensitivity = 0.05f;
     [SerializeField] private Transform headTransform;
     [SerializeField] private float movementSpeed = 1f;
+
+    [CanBeNull] public static Player Instance { get; private set; }
     
     private Vector2 direction;
     private Rigidbody rb;
 
     private void Awake()
     {
+        Instance = this;
+        
         rb = GetComponent<Rigidbody>();
     }
 
