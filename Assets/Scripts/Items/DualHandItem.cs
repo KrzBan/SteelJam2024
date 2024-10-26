@@ -2,16 +2,11 @@ using UnityEngine;
 
 public class DualHandItem : IItem
 {
-    ItemData ItemData;
+    public ItemSO ItemSO;
 
     public DualHandItem()
     {
-        ItemData = new ItemData
-        {
-            amount = 1,
-            handRequirement = 2,
-
-        };
+       // ItemSO
     }
 
     public GameObject GetPrefab()
@@ -21,6 +16,6 @@ public class DualHandItem : IItem
 
     public void Use(PlayerManager User)
     {
-        throw new System.NotImplementedException();
+        
     }
 }

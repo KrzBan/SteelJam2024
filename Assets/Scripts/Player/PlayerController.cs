@@ -33,6 +33,7 @@ public class PlayerController : MonoBehaviour
 
     public void Interact(InputAction.CallbackContext context)
     {
-       
+        if(context.started)
+            player.Interact();
     }
 }
