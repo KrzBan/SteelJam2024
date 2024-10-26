@@ -65,7 +65,7 @@ public class Player : MonoBehaviour
         right.y = 0f;
         right.Normalize();
 
-        rb.linearVelocity = (forward * direction.y + right * direction.x) * movementSpeed;
+        rb.linearVelocity = (forward * direction.y + right * direction.x) * movementSpeed + rb.linearVelocity.y * Vector3.up;
     }
 
     public void Interact()
