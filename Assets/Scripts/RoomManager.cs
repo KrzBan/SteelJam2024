@@ -1,8 +1,33 @@
+using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
+[Serializable]
+public enum RoomType
+{
+    Normal,
+    Shop,
+    Bonus,
+    Boss
+}
+
+[Serializable]
+public class RoomLayer
+{
+    public List<RoomType> roomTypes;
+}
 public class RoomManager : MonoBehaviour
 {
+    public static RoomManager Instance;
+    private void Awake()
+    {
+        Instance = this;
+    }
+
+    public List<RoomLayer> roomLayers;
+    
     public Transform enemyTarget;
     public Transform roomParent;
     
@@ -20,15 +45,45 @@ public class RoomManager : MonoBehaviour
 
     private Room _currentRoom;
 
+    public void SpawnRoomByType(RoomType type)
+    {
+        switch (type)
+        {
+            case RoomType.Normal:
+                SpawnRandomRoom();
+                break;
+            case RoomType.Shop:
+                break;
+            case RoomType.Bonus:
+                break;
+            case RoomType.Boss:
+                SpawnBossRoom();
+                break;
+            default:
+                throw new ArgumentOutOfRangeException();
+        }
+    }
+    
+    public Transform GetPlayerSpawnPoint()
+    {
+        return _currentRoom.GetPlayerSpawnPoint();
+    }
+    
     [ContextMenu("Spawn Room")]
     public void SpawnRandomRoom()
     {
+        DeleteCurrentRoom();
+        _currentRoom = Instantiate( roomTemplates[Random.Range(0, roomTemplates.Length)], roomParent );
+        
         StartCoroutine(SpawnRandomRoomCouroutine());
     }
     
     [ContextMenu("Spawn Boss Room")]
     public void SpawnBossRoom()
     {
+        DeleteCurrentRoom();
+        _currentRoom = Instantiate( bossRoom, roomParent );
+
         StartCoroutine(SpawnBossRoomCoroutine());
     }
     
@@ -39,31 +94,19 @@ public class RoomManager : MonoBehaviour
             Destroy(_currentRoom.gameObject);
         }
     }
-
-    void SpawnRoom(Room room)
-    {
-        _currentRoom = Instantiate( room, roomParent );
-        
-        _currentRoom.BakeNavMesh();
-
-        _currentRoom.SetEnemyTarget(enemyTarget);
-    }
     
     IEnumerator SpawnBossRoomCoroutine()
     {
-        DeleteCurrentRoom();
-
         yield return null;
         
-        SpawnRoom(bossRoom);
+        _currentRoom.BakeNavMesh();
+        
+        _currentRoom.InstantiateEnemies(enemyObject);
+        _currentRoom.SetEnemyTarget(enemyTarget);
     }
     IEnumerator SpawnRandomRoomCouroutine()
     {
-        DeleteCurrentRoom();
-
         yield return null;
-        
-        _currentRoom = Instantiate( roomTemplates[Random.Range(0, roomTemplates.Length)], roomParent );
         
         _currentRoom.SetMaterials(floorMaterial, wallMaterial, ceilingMaterial);
         _currentRoom.InstantiateScenery(sceneryObject);
