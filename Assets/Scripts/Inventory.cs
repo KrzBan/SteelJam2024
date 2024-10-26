@@ -2,7 +2,8 @@ using UnityEngine;
 
 public class Inventory
 {
-    int Keys;
-    int Coins;
-    ItemSO ItemSlot;
+    public int Keys { get; set; }
+    public int Coins { get; set; }
+    
+    public ItemSO ItemSlot;
 }

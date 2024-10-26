@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Mechaniki/Rodzaje pokoi.md",
+                "file": "Mechaniki/Postać.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Rodzaje pokoi"
+              "title": "Postać"
             }
           }
         ]
@@ -93,7 +93,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Mechaniki/Rodzaje pokoi.md",
+                "file": "Mechaniki/Postać.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -103,7 +103,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks for Rodzaje pokoi"
+              "title": "Backlinks for Postać"
             }
           },
           {
@@ -112,12 +112,12 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Mechaniki/Rodzaje pokoi.md",
+                "file": "Mechaniki/Postać.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "Outgoing links from Rodzaje pokoi"
+              "title": "Outgoing links from Postać"
             }
           },
           {
@@ -139,10 +139,10 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Mechaniki/Rodzaje pokoi.md"
+                "file": "Mechaniki/Postać.md"
               },
               "icon": "lucide-list",
-              "title": "Outline of Rodzaje pokoi"
+              "title": "Outline of Postać"
             }
           }
         ]
@@ -164,15 +164,15 @@
   },
   "active": "4a8f1c50718732c8",
   "lastOpenFiles": [
-    "Mechaniki/Przemioty uleczalne.md",
+    "Mechaniki/Rodzaje pokoi.md",
     "Mechaniki/Postać.md",
+    "Mechaniki/Przemioty uleczalne.md",
     "Mechaniki/Ekwipunek.md",
     "Mechaniki/Części ciała.md",
     "Mechaniki/Bronie.md",
     "Mechaniki/Mapa.md",
     "Wizualizacja/Przechodzenie między pokojami.md",
     "Wizualizacja/Status i ekwipunek.md",
-    "Mechaniki/Rodzaje pokoi.md",
     "Założenia.md",
     "GDD - Steelworks Jam 2024.md",
     "Wizualizacja/Pokój.md",
