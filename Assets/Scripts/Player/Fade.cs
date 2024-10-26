@@ -8,7 +8,11 @@ public class Fade : MonoBehaviour
     public Action OnFadedIn { get; set; }
 
     public static Fade Instance;
-    
+
+    void Awake()
+    {
+        Instance = this;
+    }
     public void Out(float time)
     {
         StartCoroutine(IOut(time));
@@ -40,9 +44,9 @@ public class Fade : MonoBehaviour
         {
             yield return new WaitForEndOfFrame();
             timer += Time.deltaTime;
-            RenderSettings.fogDensity = timer / time;
+            RenderSettings.fogDensity = 4 * timer / time;
         }
-        RenderSettings.fogDensity = 10f;
+        RenderSettings.fogDensity = 4f;
         
         OnFadedOut?.Invoke();
     }
@@ -54,7 +58,7 @@ public class Fade : MonoBehaviour
         {
             yield return new WaitForEndOfFrame();
             timer += Time.deltaTime;
-            RenderSettings.fogDensity = 1 - (timer / time);
+            RenderSettings.fogDensity = 4*( 1 - (timer / time));
         }
         
         RenderSettings.fog = false;

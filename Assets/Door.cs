@@ -5,7 +5,7 @@ using UnityEngine;
 public class Door : MonoBehaviour, IInteractable
 {
     public RoomType roomType;
-    public float fadeTime = 1.0f;
+    public float fadeTime = 3.0f;
 
     private bool interactable = true;
     public void interact(Player user)
@@ -27,6 +27,7 @@ public class Door : MonoBehaviour, IInteractable
     IEnumerator TeleportCoroutine(Player user, Transform spawnPoint)
     {
         // fade in
+        Fade.Instance.Out(fadeTime);
         yield return new WaitForSeconds(fadeTime);
         
         // teleport
@@ -34,6 +35,7 @@ public class Door : MonoBehaviour, IInteractable
         user.Rigidbody.rotation = spawnPoint.rotation;
         
         // fade out
+        Fade.Instance.In(fadeTime);
         yield return new WaitForSeconds(fadeTime);
         
         yield return null;
