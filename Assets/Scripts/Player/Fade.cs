@@ -8,7 +8,13 @@ public class Fade : MonoBehaviour
     public Action OnFadedIn { get; set; }
 
     public static Fade Instance;
+
+    public AnimationCurve fadeCurve;
     
+    void Awake()
+    {
+        Instance = this;
+    }
     public void Out(float time)
     {
         StartCoroutine(IOut(time));
@@ -34,17 +40,20 @@ public class Fade : MonoBehaviour
     IEnumerator IOut(float time)
     {
         RenderSettings.fog = true;
-        
+        RenderSettings.fogColor = Color.black;
+
         var timer = 0f;
         while (timer < time)
         {
             yield return new WaitForEndOfFrame();
             timer += Time.deltaTime;
-            RenderSettings.fogDensity = timer / time;
+            //RenderSettings.fogDensity = 2 * timer / time;
+            RenderSettings.fogDensity = fadeCurve.Evaluate(timer / time);
         }
-        RenderSettings.fogDensity = 10f;
+        RenderSettings.fogDensity = 2f;
         
         OnFadedOut?.Invoke();
+        OnFadedOut = null;
     }
     
     IEnumerator IIn(float time)
@@ -54,11 +63,13 @@ public class Fade : MonoBehaviour
         {
             yield return new WaitForEndOfFrame();
             timer += Time.deltaTime;
-            RenderSettings.fogDensity = 1 - (timer / time);
+            // RenderSettings.fogDensity = 4*( 1 - (timer / time));
+            RenderSettings.fogDensity = fadeCurve.Evaluate( 1- (timer / time));
         }
         
         RenderSettings.fog = false;
         
         OnFadedIn?.Invoke();
+        OnFadedIn = null;
     }
 }

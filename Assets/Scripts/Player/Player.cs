@@ -6,6 +6,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [field: SerializeField] public PlayerStatus PlayerStatus { get; set; }
+    public Rigidbody Rigidbody => rb;
     
     [SerializeField, Range(0f, 1f)] private float sensitivity = 0.05f;
     [SerializeField] private Transform headTransform;
@@ -16,7 +17,7 @@ public class Player : MonoBehaviour
     private Vector2 direction;
     private Rigidbody rb;
 
-
+    
 
     private void Awake()
     {
@@ -65,7 +66,7 @@ public class Player : MonoBehaviour
         right.y = 0f;
         right.Normalize();
 
-        rb.linearVelocity = (forward * direction.y + right * direction.x) * movementSpeed;
+        rb.linearVelocity = (forward * direction.y + right * direction.x) * movementSpeed + rb.linearVelocity.y * Vector3.up;
     }
 
     public void Interact()
