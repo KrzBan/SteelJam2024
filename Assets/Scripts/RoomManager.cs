@@ -4,6 +4,7 @@ using UnityEngine;
 public class RoomManager : MonoBehaviour
 {
     public Transform enemyTarget;
+    public Transform roomParent;
     
     public Material floorMaterial;
     public Material wallMaterial;
@@ -20,18 +21,18 @@ public class RoomManager : MonoBehaviour
     private Room _currentRoom;
 
     [ContextMenu("Spawn Room")]
-    void SpawnRandomRoom()
+    public void SpawnRandomRoom()
     {
         StartCoroutine(SpawnRandomRoomCouroutine());
     }
     
     [ContextMenu("Spawn Boss Room")]
-    void SpawnBossRoom()
+    public void SpawnBossRoom()
     {
         StartCoroutine(SpawnBossRoomCoroutine());
     }
     
-    void DeleteCurrentRoom()
+    public void DeleteCurrentRoom()
     {
         if(_currentRoom != null)
         {
@@ -39,17 +40,22 @@ public class RoomManager : MonoBehaviour
         }
     }
 
+    void SpawnRoom(Room room)
+    {
+        _currentRoom = Instantiate( room, roomParent );
+        
+        _currentRoom.BakeNavMesh();
+
+        _currentRoom.SetEnemyTarget(enemyTarget);
+    }
+    
     IEnumerator SpawnBossRoomCoroutine()
     {
         DeleteCurrentRoom();
 
         yield return null;
         
-        _currentRoom = Instantiate( bossRoom );
-        
-        _currentRoom.BakeNavMesh();
-
-        _currentRoom.SetEnemyTarget(enemyTarget);
+        SpawnRoom(bossRoom);
     }
     IEnumerator SpawnRandomRoomCouroutine()
     {
@@ -57,7 +63,7 @@ public class RoomManager : MonoBehaviour
 
         yield return null;
         
-        _currentRoom = Instantiate( roomTemplates[Random.Range(0, roomTemplates.Length)] );
+        _currentRoom = Instantiate( roomTemplates[Random.Range(0, roomTemplates.Length)], roomParent );
         
         _currentRoom.SetMaterials(floorMaterial, wallMaterial, ceilingMaterial);
         _currentRoom.InstantiateScenery(sceneryObject);
