@@ -334,11 +334,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roomLayers:
-  - roomTypes: 000000000000000001000000
-  - roomTypes: 
-  - roomTypes: 
-  - roomTypes: 
-  - roomTypes: 
+  - roomTypes: 010000000100000001000000
+  - roomTypes: 010000000100000001000000
+  - roomTypes: 04000000
   enemyTarget: {fileID: 672910342}
   roomParent: {fileID: 1289144003}
   floorMaterial: {fileID: 2100000, guid: b1bb71bb18f7b9d4489cb676e117de67, type: 2}
@@ -347,6 +345,7 @@ MonoBehaviour:
   sceneryObject: {fileID: 3101592751412893510, guid: 0b720eaf3660af2458af5b6e65f04ff7, type: 3}
   lightObject: {fileID: 724133117482815894, guid: e61c74e0e43c68c43b6efa936d6fe350, type: 3}
   enemyObject: {fileID: 3101592751412893510, guid: 3323359f0ec6cf148a80b29b18849de3, type: 3}
+  doorObject: {fileID: 5591542815596445596, guid: 40b5800cc45d9d34288166df6a58f947, type: 3}
   bossRoom: {fileID: 0}
   roomTemplates:
   - {fileID: 6292688871591923823, guid: 142b364c847771d46ac7d1082fb783ae, type: 3}
@@ -800,8 +799,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94d33df09a2fe044ab8fd724e17e3a6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  roomType: 0
-  fadeTime: 1
+  roomType: 1
 --- !u!1001 &1659018351
 PrefabInstance:
   m_ObjectHideFlags: 0

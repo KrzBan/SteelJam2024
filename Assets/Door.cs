@@ -34,6 +34,7 @@ public class Door : MonoBehaviour, IInteractable
         // teleport
         user.Rigidbody.position = spawnPoint.position;
         user.Rigidbody.rotation = spawnPoint.rotation;
+        RoomManager.Instance.SwapRooms();
         
         // fade out
         Fade.Instance.In(fadeTime);

@@ -14,6 +14,7 @@ public class Room : MonoBehaviour
     public Transform interactableParent;
     public Transform vfxParent;
     public Transform lightsParent;
+    public Transform doorsParent;
 
     public Transform GetPlayerSpawnPoint()
     {
@@ -62,7 +63,27 @@ public class Room : MonoBehaviour
     {
         InstantiateInChildren(prefab, lightsParent);
     }
-    
+
+    public void InstantiateDoors(GameObject door, RoomType leftType, RoomType middleType, RoomType rightType)
+    {
+        if (leftType != RoomType.None)
+            InstantiateDoor(door, leftType, doorsParent.GetChild(0));
+        if (middleType != RoomType.None)
+            InstantiateDoor(door, middleType, doorsParent.GetChild(1));
+        if (rightType != RoomType.None)
+            InstantiateDoor(door, rightType, doorsParent.GetChild(2));
+    }
+
+    private void InstantiateDoor(GameObject door, RoomType roomType, Transform parent)
+    {
+        var doorObj = Instantiate(door, parent.transform.position, parent.transform.rotation, parent);
+        var doorComp = doorObj.GetComponentInChildren<Door>();
+        if(doorComp != null)
+        {
+            doorComp.roomType = roomType;
+        }
+    }
+
     private void InstantiateInChildren(GameObject prefab, Transform parent)
     {
         foreach(Transform child in parent)
